@@ -8,15 +8,15 @@ import com.mongodb.MongoClient;
 public class MongoService {
 
 	String dbName = "weblocator";
-	//MongoService mongo = new MongoService();
 	MongoClient mongoClient;
 	
 	public MongoService(){
 		
 		try {
-			mongoClient = new MongoClient("localhost", 27017);
+			mongoClient = new MongoClient("127.0.0.1", 27017);
 		} catch (UnknownHostException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			//e.printStackTrace();
 		}
 	
 	}
