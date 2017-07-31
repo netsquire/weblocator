@@ -27,7 +27,7 @@ public class MongoService {
 				System.out.println("Auth is OK.");
 				}
 			else {
-				throw new Exception("AUTH IS NOT OK.");
+				System.out.println("AUTH IS NOT OK.");
 			}
 		} catch (UnknownHostException e) {
 			//System.out.println(e.getMessage());
