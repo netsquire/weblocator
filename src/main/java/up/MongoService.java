@@ -15,7 +15,7 @@ public class MongoService {
 	DBCollection collection = null;
 	DB db = null;
 	
-	public MongoService() throws Exception{
+	public MongoService() {
 		dbName = System.getProperty("OPENSHIFT_APP_NAME");
 		String username = System.getProperty("OPENSHIFT_MONGODB_DB_USERNAME");
 		String password = System.getProperty("OPENSHIFT_MONGODB_DB_PASSWORD");
