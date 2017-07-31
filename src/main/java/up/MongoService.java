@@ -25,7 +25,7 @@ public class MongoService {
 		BasicDBObject ipDoc = new BasicDBObject();
 		ipDoc.put("id", id);
 		ipDoc.put("ip", ip);
-		mongoClient.getDB(dbName).getCollection("user").insert(ipDoc);
+		//mongoClient.getDB(dbName).getCollection("user").insert(ipDoc);
 	}
 	
 	public void put(String info){}
