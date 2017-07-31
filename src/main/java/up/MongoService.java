@@ -16,19 +16,19 @@ public class MongoService {
 	DB db = null;
 	
 	public MongoService() {
-		dbName = System.getProperty("OPENSHIFT_APP_NAME");
-		String username = System.getProperty("OPENSHIFT_MONGODB_DB_USERNAME");
-		String password = System.getProperty("OPENSHIFT_MONGODB_DB_PASSWORD");
+		//dbName = System.getProperty("OPENSHIFT_APP_NAME");
+		//String username = System.getProperty("OPENSHIFT_MONGODB_DB_USERNAME");
+		//String password = System.getProperty("OPENSHIFT_MONGODB_DB_PASSWORD");
 		try {
 			mongoClient = new MongoClient("127.0.0.1", 27017);
 			db = mongoClient.getDB(dbName);
 			collection = db.getCollection(collectionName);
-			if(db.authenticate(username, password.toCharArray())){
+/*			if(db.authenticate(username, password.toCharArray())){
 				System.out.println("Auth is OK.");
 				}
 			else {
 				System.out.println("AUTH IS NOT OK.");
-			}
+			}*/
 		} catch (UnknownHostException e) {
 			//System.out.println(e.getMessage());
 			e.printStackTrace();
