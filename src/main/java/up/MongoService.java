@@ -13,7 +13,7 @@ public class MongoService {
 	public MongoService(){
 		
 		try {
-			mongoClient = new MongoClient("127.0.0.1", 27017);
+			mongoClient = new MongoClient("mongodb://127.0.0.1:27017");
 		} catch (UnknownHostException e) {
 			System.out.println(e.getMessage());
 			//e.printStackTrace();
