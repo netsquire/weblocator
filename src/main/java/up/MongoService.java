@@ -1,7 +1,5 @@
 package up;
 
-import com.mongodb.DB;
-
 import java.net.UnknownHostException;
 
 import com.mongodb.BasicDBObject;
@@ -10,15 +8,14 @@ import com.mongodb.MongoClient;
 public class MongoService {
 
 	String dbName = "grid";
-	MongoService mongo = new MongoService();
-	MongoClient client;
+	//MongoService mongo = new MongoService();
+	MongoClient mongoClient;
 	
 	public MongoService(){
 		
 		try {
-			client = new MongoClient("localhost", 27017);
+			mongoClient = new MongoClient("localhost", 27017);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
@@ -28,7 +25,7 @@ public class MongoService {
 		BasicDBObject ipDoc = new BasicDBObject();
 		ipDoc.put("id", id);
 		ipDoc.put("ip", ip);
-		mongo.client.getDB(dbName).getCollection("user").insert(ipDoc);
+		mongoClient.getDB(dbName).getCollection("user").insert(ipDoc);
 	}
 	
 	public void put(String info){}
