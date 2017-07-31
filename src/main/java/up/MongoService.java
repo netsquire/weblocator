@@ -5,6 +5,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 
 public class MongoService {
 
@@ -23,7 +24,7 @@ public class MongoService {
 		String dbName = System.getenv("OPENSHIFT_APP_NAME");
 
 		try {
-			mongoClient = new MongoClient("mongodb://admin:xcY_Iv7IZzRw@" + host + ":27017/" + dbName);
+			mongoClient = new MongoClient(new MongoClientURI(System.getProperty("OPENSHIFT_MONGODB_DB_URL")));
 			db = mongoClient.getDB(dbName);
 			collection = db.getCollection(collectionName);
 		} catch (UnknownHostException e) {
