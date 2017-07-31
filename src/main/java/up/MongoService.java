@@ -7,7 +7,7 @@ import com.mongodb.MongoClient;
 
 public class MongoService {
 
-	String dbName = "grid";
+	String dbName = "weblocator";
 	//MongoService mongo = new MongoService();
 	MongoClient mongoClient;
 	
