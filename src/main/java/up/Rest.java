@@ -7,9 +7,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 
-@Path("/")
+//@Path("/")
 public class Rest {
 	
+    @GET
+    @Path("/")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String index() {
+        return "request: /info/{id}";
+    }
+    
     @GET
     @Path("/empty")
     @Produces(MediaType.TEXT_PLAIN)
