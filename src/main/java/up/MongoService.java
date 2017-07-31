@@ -31,7 +31,7 @@ public class MongoService {
         //MongoClient mongoClient = new MongoClient(new ServerAddress(host, 27017), mongoClientOptions);
         mongoClient.setWriteConcern(WriteConcern.SAFE);
 		try {
-			mongoClient = new MongoClient(/* "127.0.0.1", 27017 */);
+			mongoClient = new MongoClient(host, 27017 );
 			db = mongoClient.getDB(dbName);
 			collection = db.getCollection(collectionName);
 			/*
