@@ -3,6 +3,8 @@ package up;
 import java.net.UnknownHostException;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 
 public class MongoService {
@@ -25,7 +27,9 @@ public class MongoService {
 		BasicDBObject ipDoc = new BasicDBObject();
 		ipDoc.put("id", id);
 		ipDoc.put("ip", ip);
-		//mongoClient.getDB(dbName).getCollection("user").insert(ipDoc);
+		DB db = mongoClient.getDB(dbName);
+		DBCollection collection = db.getCollection("user");
+		collection.insert(ipDoc);
 	}
 	
 	public void put(String info){}
