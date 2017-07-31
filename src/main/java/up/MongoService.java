@@ -23,7 +23,7 @@ public class MongoService {
 		String dbName = System.getenv("OPENSHIFT_APP_NAME");
 
 		try {
-			mongoClient = new MongoClient("mongodb://admin:xcY_Iv7IZzRw@" + host + "27017/" + dbName);
+			mongoClient = new MongoClient("mongodb://admin:xcY_Iv7IZzRw@" + host + ":27017/" + dbName);
 			db = mongoClient.getDB(dbName);
 			collection = db.getCollection(collectionName);
 		} catch (UnknownHostException e) {
