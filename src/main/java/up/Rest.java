@@ -19,7 +19,8 @@ public class Rest {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String index() {
 		String dbName = System.getenv("OPENSHIFT_APP_NAME");
-		return "request: /info/{id} " + dbName;
+		String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
+		return "request: /info/{id} " + dbName + "@" + host;
 	}
 
 	@GET
@@ -40,7 +41,7 @@ public class Rest {
 	@Path("/{id}/ip/{ip}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String ipAnnounce(@PathParam("id") String id, @PathParam("ip") String ip) {
-		mongoService.putIp(id, ip);
+		//mongoService.putIp(id, ip);
 		return "Got it - " + id;
 	}
 }
