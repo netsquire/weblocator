@@ -18,7 +18,8 @@ public class Rest {
 	@Path("/")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String index() {
-		return "request: /info/{id}";
+		String dbName = System.getenv("OPENSHIFT_APP_NAME");
+		return "request: /info/{id} " + dbName;
 	}
 
 	@GET
