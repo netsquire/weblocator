@@ -28,7 +28,7 @@ public class MongoService {
 		ipDoc.put("id", id);
 		ipDoc.put("ip", ip);
 		DB db = mongoClient.getDB(dbName);
-		DBCollection collection = db.getCollection("user");
+		DBCollection collection = db.getCollection("local");
 		collection.insert(ipDoc);
 	}
 	
