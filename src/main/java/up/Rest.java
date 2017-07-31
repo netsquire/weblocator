@@ -10,6 +10,8 @@ import javax.ws.rs.core.MediaType;
 @Path("/")
 public class Rest {
 	
+	MongoService mongoService = new MongoService();
+	
     @GET
     @Path("/")
     @Produces(MediaType.TEXT_PLAIN)
@@ -28,6 +30,14 @@ public class Rest {
     @Path("/info/{id}")
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt(@PathParam("id") String id) {
+        return "Got it - " + id;
+    }
+    
+    @GET
+    @Path("/{id}/ip/{ip}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String ipAnnounce(@PathParam("id") String id, @PathParam("ip") String ip) {
+    	mongoService.putIp(id, ip);
         return "Got it - " + id;
     }
 }
