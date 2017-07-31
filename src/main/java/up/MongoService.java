@@ -17,10 +17,10 @@ public class MongoService {
 		
 		try {
 			mongoClient = new MongoClient("127.0.0.1", 27017);
-			collection = mongoClient.getDB(dbName).getCollection("collectionName");
+			collection = mongoClient.getDB(dbName).getCollection(collectionName);
 		} catch (UnknownHostException e) {
-			System.out.println(e.getMessage());
-			//e.printStackTrace();
+			//System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	
 	}
