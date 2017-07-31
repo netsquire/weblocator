@@ -25,9 +25,9 @@ public class MongoService {
 		try {
 			mongoClient = new MongoClient(); //"mongodb://admin:xcY_Iv7IZzRw@" + host + "27017/" + dbName);
 			db = mongoClient.getDB(dbName);
-			if (!db.authenticate(username, password.toCharArray())){
-				System.out.println("NO AUTH");
-			}
+//			if (!db.authenticate(username, password.toCharArray())){
+//				System.out.println("NO AUTH");
+//			}
 			collection = db.getCollection(collectionName);
 		} catch (UnknownHostException e) {
 			// System.out.println(e.getMessage());
