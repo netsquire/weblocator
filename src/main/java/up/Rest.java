@@ -9,10 +9,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/")
 public class Rest {
 
-	MongoService mongoService;
-	public Rest() {
-		mongoService = new MongoService();
-	}
+	MongoService mongoService = new MongoService();
 
 	@GET
 	@Path("/")
