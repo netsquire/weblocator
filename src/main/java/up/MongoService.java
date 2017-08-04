@@ -36,6 +36,7 @@ public class MongoService {
 		String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
 		String dbName = System.getenv("OPENSHIFT_APP_NAME");
 
+		password = "xcY_Iv7IZzRw";
 		uriString = "mongodb://admin:" + password + "@" + host + ":27017/" + dbName;
 		MongoClientURI uri = new MongoClientURI(uriString);
 		//MongoCredential credential = MongoCredential.createCredential(username, dbName, password.toCharArray());
