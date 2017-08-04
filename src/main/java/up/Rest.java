@@ -39,7 +39,7 @@ public class Rest {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String ipAnnounce(@PathParam("id") String id, @PathParam("ip") String ip) {
 		mongoService.putIp(id, ip);
-		return "Got it - " + id + "(" + mongoService.getUriString() + ")" + "<BR>" 
+		return "Got it - " + id + "(" + mongoService.getUriString() + ")" + System.getProperty("line.separator") 
 				+ mongoService.list();
 	}
 }
