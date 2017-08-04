@@ -12,6 +12,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
+import com.mongodb.MongoClientURI;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoCollection;
@@ -30,11 +31,12 @@ public class MongoService {
 		String username = System.getProperty("OPENSHIFT_MONGODB_DB_USERNAME");
 		String password = System.getProperty("OPENSHIFT_MONGODB_DB_PASSWORD");
 		String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
-		String port = System.getenv("OPENSHIFT_MONGODB_DB_PORT");
 		String dbName = System.getenv("OPENSHIFT_APP_NAME");
 
-		MongoCredential credential = MongoCredential.createCredential(username, dbName, password.toCharArray());
-		mongoClient = new MongoClient(new ServerAddress(host, 27017), Arrays.asList(credential));
+		MongoClientURI uri = new MongoClientURI("mongodb://admin:" + password + "@" + host + "/?authSource=" + dbName);
+		//MongoCredential credential = MongoCredential.createCredential(username, dbName, password.toCharArray());
+		//mongoClient = new MongoClient(new ServerAddress(host, 27017), Arrays.asList(credential));
+		mongoClient = new MongoClient(uri);
 		MongoDatabase db = mongoClient.getDatabase(dbName);
 		collection = db.getCollection(collectionName);
 	}
