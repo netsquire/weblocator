@@ -38,7 +38,7 @@ public class Rest {
 	@Path("/{id}/ip/{ip}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String ipAnnounce(@PathParam("id") String id, @PathParam("ip") String ip) {
-		mongoService.putIp(id, ip);
-		return "Got it - " + id;
+		//mongoService.putIp(id, ip);
+		return "Got it - " + id + "(" + mongoService.getUriString() + ")";
 	}
 }

@@ -24,8 +24,11 @@ public class MongoService {
 	static String collectionName = "grid";
 	MongoClient mongoClient = null;
 	MongoCollection<Document> collection;
-	//static DB db = null;
+	MongoDatabase db = null;
+	String uriString;
 
+	public String getUriString(){ return uriString;}
+	
 	public MongoService() {
 		dbName = System.getProperty("OPENSHIFT_APP_NAME");
 		String username = System.getProperty("OPENSHIFT_MONGODB_DB_USERNAME");
@@ -33,11 +36,12 @@ public class MongoService {
 		String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
 		String dbName = System.getenv("OPENSHIFT_APP_NAME");
 
-		MongoClientURI uri = new MongoClientURI("mongodb://admin:" + password + "@" + host + ":27017/" + dbName);
+		uriString = "mongodb://admin:" + password + "@" + host + ":27017/" + dbName;
+		MongoClientURI uri = new MongoClientURI(uriString);
 		//MongoCredential credential = MongoCredential.createCredential(username, dbName, password.toCharArray());
 		//mongoClient = new MongoClient(new ServerAddress(host, 27017), Arrays.asList(credential));
 		mongoClient = new MongoClient(uri);
-		MongoDatabase db = mongoClient.getDatabase(dbName);
+		db = mongoClient.getDatabase(dbName);
 		collection = db.getCollection(collectionName);
 	}
 
