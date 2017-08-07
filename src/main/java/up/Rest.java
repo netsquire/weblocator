@@ -31,15 +31,36 @@ public class Rest {
 	@Path("/info/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getIt(@PathParam("id") String id) {
-		return "Got it - " + id;
+		return "Information about:- " + id;
 	}
 
+	/**
+	 * Stores IP of client with ID
+	 * 
+	 * @param id - ID of client
+	 * @param ip - IP to be stored
+	 * @return
+	 */
 	@GET
 	@Path("/{id}/ip/{ip}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String ipAnnounce(@PathParam("id") String id, @PathParam("ip") String ip) {
+	public String putIp(@PathParam("id") String id, @PathParam("ip") String ip) {
 		mongoService.putIp(id, ip);
-		return "Got it - " + id + "(" + mongoService.getUriString() + ")" + System.getProperty("line.separator") 
+		return "OK";
+	}
+	
+	@GET
+	@Path("/{id}/ip")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getIp(@PathParam("id") String id) {
+		return mongoService.getIp(id);
+	}
+	
+	@GET
+	@Path("/dump")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String dump() {
+		return "Got it - " + System.getProperty("line.separator") 
 				+ mongoService.list();
 	}
 }

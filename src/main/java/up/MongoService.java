@@ -62,4 +62,11 @@ public class MongoService {
 
 	public static void main(String[] args) {
 	}
+
+	public String getIp(String id) {
+		Document query = new Document();
+		query.put("id", id);
+		FindIterable<Document> res = collection.find(query);
+		return res.toString();
+	}
 }
