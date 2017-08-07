@@ -67,6 +67,6 @@ public class MongoService {
 		Document query = new Document();
 		query.put("id", id);
 		Document res = collection.find(query).first();
-		return res.toJson();
+		return res.get("ip").toString();
 	}
 }
