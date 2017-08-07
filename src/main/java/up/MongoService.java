@@ -66,7 +66,7 @@ public class MongoService {
 	public String getIp(String id) {
 		Document query = new Document();
 		query.put("id", id);
-		FindIterable<Document> res = collection.find(query);
-		return res.toString();
+		Document res = (Document) collection.find(query);
+		return res.toJson();
 	}
 }
