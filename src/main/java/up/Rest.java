@@ -9,15 +9,13 @@ import javax.ws.rs.core.MediaType;
 @Path("/")
 public class Rest {
 
-	MongoService mongoService = new MongoService();
+	Holdable storageService = new MemoryStore();
 
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String index() {
-		String dbName = System.getenv("OPENSHIFT_APP_NAME");
-		String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
-		return "request: /info/{id} " + dbName + "@" + host;
+		return "Head request";
 	}
 
 	@GET
@@ -31,7 +29,7 @@ public class Rest {
 	@Path("/info/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getIt(@PathParam("id") String id) {
-		return "Information about:- " + id;
+		return "Information about: " + id + storageService.getIp(id);
 	}
 
 	/**
@@ -45,7 +43,7 @@ public class Rest {
 	@Path("/{id}/ip/{ip}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String putIp(@PathParam("id") String id, @PathParam("ip") String ip) {
-		mongoService.putIp(id, ip);
+		storageService.putIp(id, ip);
 		return "OK";
 	}
 	
@@ -53,7 +51,7 @@ public class Rest {
 	@Path("/{id}/ip")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getIp(@PathParam("id") String id) {
-		return mongoService.getIp(id);
+		return storageService.getIp(id);
 	}
 	
 	@GET
@@ -61,6 +59,6 @@ public class Rest {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String dump() {
 		return "Got it - " + System.getProperty("line.separator") 
-				+ mongoService.list();
+				+ storageService.list();
 	}
 }

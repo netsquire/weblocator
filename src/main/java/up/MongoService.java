@@ -1,26 +1,15 @@
 package up;
 
-import java.net.UnknownHostException;
-import java.util.Arrays;
-
 import org.bson.Document;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoClientURI;
-import com.mongodb.MongoCredential;
-import com.mongodb.ServerAddress;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
-public class MongoService {
+public class MongoService implements Holdable {
 
 	String dbName = "weblocator";
 	static String collectionName = "grid";
@@ -29,6 +18,10 @@ public class MongoService {
 	MongoDatabase db = null;
 	String uriString;
 
+	/* (non-Javadoc)
+	 * @see up.Holdable#getUriString()
+	 */
+	@Override
 	public String getUriString(){ return uriString;}
 	
 	public MongoService() {
@@ -43,6 +36,10 @@ public class MongoService {
 		collection = db.getCollection(collectionName);
 	}
 
+	/* (non-Javadoc)
+	 * @see up.Holdable#putIp(java.lang.String, java.lang.String)
+	 */
+	@Override
 	public void putIp(String id, String ip) {
 		Document ipDoc = new Document();
 		ipDoc.put("id", id);
@@ -50,6 +47,10 @@ public class MongoService {
 		collection.insertOne(ipDoc);
 	}
 	
+	/* (non-Javadoc)
+	 * @see up.Holdable#list()
+	 */
+	@Override
 	public String list(){
 		StringBuffer sb = new StringBuffer();
 		FindIterable<Document> cursor = collection.find();
@@ -63,6 +64,10 @@ public class MongoService {
 	public static void main(String[] args) {
 	}
 
+	/* (non-Javadoc)
+	 * @see up.Holdable#getIp(java.lang.String)
+	 */
+	@Override
 	public String getIp(String id) {
 		Document query = new Document();
 		query.put("id", id);
